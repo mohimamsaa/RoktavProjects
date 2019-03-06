@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Reimbursement</title>
+
+    <head th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <head th:fragment="js">
+        <script
+                src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    </head>
+
+    <style>
+        @media screen and (max-width: 500px) {
+            .navbar a {
+                float: none;
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<nav th:fragment="navbar-anon" class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <a class="navbar-brand" href="/login">Reimbursement</a>
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav pull-right">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/register}"><i class="fa fa-fw fa-user"></i>Register</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+
+
+<body>
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-transparent">
+        <a class="navbar-brand" th:href="@{/reimburse}">Reimbursement</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" th:classappend="${home} ? 'active' : '' ">
+                    <a class="nav-link" th:href="@{/reimburse}">New Reimbursement</a>
+                </li>
+<!--                <li class="nav-item" th:classappend="${sortedReimburse} ? 'active' : '' ">
+                   <a class="nav-link" th:href="@{/reimburse/list}">List Reimburse</a>
+                </li>
+                <li class="nav-item" th:classappend="${riwayatPenanganan} ? 'active' : '' ">
+                    <a class="nav-link" th:href="@{/rawat-jalan/pasien/penanganan}">Riwayat Penanganan Pasien</a>
+                </li>
+                <li class="nav-item dropdown" th:classappend="${poli} ? 'active' : '' ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
+                        Poli
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" th:href="@{/rawat-jalan/poli}">Daftar Poli</a>
+                        <a class="dropdown-item" th:href="@{/rawat-jalan/poli/tambah}">Tambah Poli</a>
+                    </div>
+                </li>-->
+
+                <li class="nav-item dropdown" th:classappend="${reimburse} ? 'active' : '' ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown"><i class="fa fa-fw fa-list"></i>
+                        Reimbursement List
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" th:href="@{/reimburse/list}">All Reimbursements</a>
+                        <a class="dropdown-item" th:href="@{/reimburse/mine}">My Reimbursements</a>
+                    </div>
+                </li>
+
+
+            </ul>
+            <ul class="navbar-nav pull-right">
+                <li class="nav-item dropleft" th:classappend="${user} ? 'active' : '' ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown"><i class="fa fa-fw fa-user"></i>
+                        Profile
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" th:href="@{/user/profile}">Change Profile</a>
+                        <a class="dropdown-item" th:href="@{/user/changePassword}">Change Password</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav pull-right">
+            	<li class="nav-item active">
+            		<a class="nav-link" th:href="@{/logout}"><i class="fa fa-fw fa-door"></i>Logout</a>
+           		</li>
+            </ul>
+        </div>
+    </nav>
+</body>
+
+</html>

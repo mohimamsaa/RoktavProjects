@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+    <style>
+        body {
+            background-image: url("http://minimal-wallpapers.com/wp-content/uploads/2015/09/giraffe-minimalist-wallpaper-orange.png");
+            opacity: 0.5%;
+        }
+    </style>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar-anon"></nav>
+    <div class="container-fluid">
+            <h2 align="center">Hello!</h2>
+            <br>
+            <div class="row">
+                <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="card bg-transparent">
+                            <div class="card-header" align="center">
+                                Log In
+                            </div>
+                            <div class="card-body">
+                                <div th:if="${param.error}">
+                                    <span style="color: red">Invalid username or password</span>
+                                </div>
+                                <form th:action="@{/login}" method="POST">
+                                    <div class="row form-group">
+                                        <div class="col-md-2"></div>
+                                        <input type="text" class="col-sm-8 form-control input-sm" name="username" placeholder="Username">
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-2"></div>
+                                        <input type="password" class="col-sm-8 form-control input-sm" name="password" placeholder="Password">
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class = "col-md-4"></div>
+                                        <button type="submit" class="btn btn-primary col-md-4 bg-info">Sign In</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

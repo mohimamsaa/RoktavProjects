@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Add Reimburse</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <style>
+        body {
+            background-image: url("http://minimal-wallpapers.com/wp-content/uploads/2015/09/giraffe-minimalist-wallpaper-orange.png");
+            opacity: 0.5%;
+        }
+        .accordion {
+            background-color: transparent;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+        /*.active, .accordion:hover {
+            background-color: #ccc;
+        }*/
+
+        .panel {
+            padding: 0 18px;
+            background-color: transparent;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <h1 align="center">Reimbursement Page</h1>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card bg-transparent">
+                    <div class="card-header" align="center">
+                        Add Reimbursement
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/reimburse}" method="POST" th:object="${user}"
+                              onsubmit="return confirm('kindly contact me immediately at :\n' +
+                               'Whatsapp : +6140261621\n' + 'Line : anisasisi');">
+
+                            <input type="hidden" name="status" value="Unverified"/>
+
+                            <input type="hidden" name="bank" class="form-control" maxlength="255" th:value="${user.bank}"/>
+
+                            <input type="hidden" name="acc" class="form-control" maxlength="255" th:value="${user.acc}"/>
+
+                            <input type="hidden" name="name" class="form-control" maxlength="255" th:value="${user.username}"/>
+
+                            <input type="hidden" name="contacts" class="form-control" maxlength="255" th:value="${user.contacts}"/>
+
+                            <input type="hidden" name="division" class="form-control" maxlength="255" th:value="${user.division}"/>
+
+                            <div class="form-group">
+                                <label>Item</label>
+                                <input type="text" name="item" class="form-control" maxlength="255" required/>
+                                <small class="form-text text-muted">The Item</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Nominal</label>
+                                <input type="number" name="nominal" class="form-control" maxlength="255" required/>
+                                <small class="form-text text-muted">Only nominal, in AUD</small>
+                            </div>
+
+                            <br>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect02">Project</label>
+                                </div>
+                                <select class="custom-select" id="inputGroupSelect02" name="project" required>
+                                    <option name="project" value="Art and Culture Day" selected>Art and Culture Day</option>
+                                    <option name="project" value="ASEAN Youth Summit">ASEAN Youth Summit</option>
+                                    <option name="project" value="Barbecue">Barbecue</option>
+                                    <option name="project" value="Donation">Donation</option>
+                                    <option name="project" value="E-Cards">E-Cards</option>
+                                    <option name="project" value="Film Screening">Film Screening</option>
+                                    <option name="project" value="Flag Ceremony">Flag Ceremony</option>
+                                    <option name="project" value="Krakatau Cup">Krakatau Cup</option>
+                                    <option name="project" value="Pesta Rakyat">Pesta Rakyat</option>
+                                    <option name="project" value="PPIA Cup">PPIA Cup</option>
+                                    <option name="project" value="PPIA Membership Cards">PPIA Membership Cards</option>
+                                    <option name="project" value="Public Discussion">Public Discussion</option>
+                                    <option name="project" value="Sports Day">Sports Day</option>
+                                    <option name="project" value="Student Help Online">Student Help Online</option>
+                                    <option name="project" value="Student Info">Student Info</option>
+                                    <option name="project" value="Volunteering<">Volunteering</option>
+                                    <option name="project" value="Web Series">Web Series</option>
+                                    <option name="project" value="Welcoming Students">Welcoming Students</option>
+                                </select>
+                            </div>
+
+                            <br>
+
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect03">Needs</label>
+                                </div>
+                                <select class="custom-select" id="inputGroupSelect03" name="needs" required>
+                                    <option name="needs" value="Bazzar" selected>Bazzar</option>
+                                    <option name="needs" value="Consumption">Consumption</option>
+                                    <option name="needs" value="Documentation">Documentation</option>
+                                    <option name="needs" value="Equipment">Equipment</option>
+                                    <option name="needs" value="Event">Event</option>
+                                    <option name="needs" value="E-icensing">Licensing</option>
+                                    <option name="needs" value="Operational">Operational</option>
+                                    <option name="needs" value="Krakatau Cup">Krakatau Cup</option>
+                                    <option name="needs" value="Publication">Publication</option>
+                                    <option name="needs" value="Transportation">Transportation</option>
+                                    <option name="needs" value="Others">Others</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Date Of Transaction</label>
+                                <input type="date" name="dateOfTransaction" class="form-control" required/>
+                                <small class="form-text text-muted">Date Of The Transaction</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Notes</label>
+                                <textarea type="text" name="notes" class="form-control" style="height: 100px"></textarea>
+                            </div>
+
+                            <br>
+                            <div class="form-group">
+                                <div class="col-md-6"></div>
+                                <button type="submit" class="btn btn-primary btn-block bg-success">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button class="accordion bg-info">Contacts</button>
+                <div class="panel">
+                    <br>
+                    <p>Sisi (Finance)</p>
+                    <p>Whatsapp : +6140261621 / Line : anisasisi</p>
+                </div>
+
+                <button class="accordion bg-info">Rules of Conduct</button>
+                <div class="panel">
+                    <br>
+                    <p align="justify">PERATURAN REIMBURSEMENT<br><br>
+
+                        1. Sebelum segala program kerja dilaksanakan, seluruh departemen wajib membuat budgeting untuk semua program kerja.<br><br>
+                        2. Transaksi yang melebih AU$150 harap menghubungi Bendahara PPIAQ.<br><br>
+                        3. Nominal reimburse akan disesuaikan dengan budgeting yang telah dibuat di awal tahun dan juga keadaan keuangan PPIAQ. Jika terdapat transaksi diluar perkiraan budgeting awal tahun yang ingin direimburse, harus dibicarakan terlebih dahulu dan mendapatkan approval oleh Bendahara dan Ketua PPIAQ.<br><br>
+                        4. Bukti transaksi yang valid sebagai berikut :<br>
+                        a. Tertera tanggal transaksi, kop/nama toko, lokasi toko, nominal, keterangan pengeluaran<br>
+                        b. Tidak pudar<br>
+                        c. Tulisan terbaca jelas<br>
+                        d. Tidak robek dan tidak lecek<br>
+                        e. Tidak ada tulisan selain tulisan yang berkaitan dengan validasi bukti transaksi<br>
+                        f. Tidak ada bukti tape corrector (tipex)<br><br>
+                        5. Segala transaksi yang ingin direimburse, harus disertakan dengan bukti transaksi yang valid. Tanpa bukti transaksi yang valid, transaksi apapun TIDAK akan direimburse TANPA TERKECUALI.<br><br>
+                        6. Bukti transaksi harus diberikan maksimal 5 (lima) hari setelah tanggal transaksi yang tertera di bukti transaksi. Segala transaksi melebihi 5 (lima) hari TIDAK akan direimburse.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight){
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>
+</body>
+</html>

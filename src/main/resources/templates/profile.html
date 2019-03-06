@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Profile</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <style >
+        .col-centered{
+            float: none;
+            margin: 0 auto;
+        }
+         body {
+             background-image: url("http://minimal-wallpapers.com/wp-content/uploads/2015/09/giraffe-minimalist-wallpaper-orange.png");
+             opacity: 0.5%;
+         }
+    </style>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid ">
+    <h2 class="text-center">Profile Details</h2>
+    <div class="row">
+        <div class="col-md-4 col-centered">
+            <div class="card bg-transparent" th:object="${user}">
+                <div class="card-header text-center" th:text="${user.username}">
+
+                </div>
+                <div class="card-body" >
+                    <form th:action="@{/user/profile/change}" th:object="${user}" method="POST">
+
+                        <input type="hidden" name="id" th:value="${user.id}"/>
+
+                        <div class="form-group">
+                            <label>Contacts</label>
+                            <input type="text" name="contacts" class="form-control" th:value="${user.contacts}" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Preffered Bank</label>
+                            <input type="text" name="prefferedBank" class="form-control" maxlength="255" th:value="${user.bank}" required/>
+                            <small class="form-text text-muted">Insert Your Preffered Bank for Transaction</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Account Number</label>
+                            <input type="text" name="accNumber" class="form-control" maxlength="255" th:value="${user.acc}" required/>
+                            <small class="form-text text-muted">Insert Your Preffered Bank Account Number</small>
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-block bg-success">Change Detail</button>
+                    </form>
+                    <br>
+                    <form th:action="@{/user/changePassword}" method="GET">
+                        <button type="submit" class="btn btn-primary btn-block bg-danger">Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View All Poli</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <script type="text/javascript" charset="utf8"
+            src="	https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" />
+    <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript"
+                src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+        <link rel="stylesheet" type="text/css"
+              href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />-->
+
+
+    <script>
+        $(document).ready(function() {
+            $('#data').DataTable();
+        });
+    </script>
+    <style>
+        body {
+            background-image: url("http://minimal-wallpapers.com/wp-content/uploads/2015/09/giraffe-minimalist-wallpaper-orange.png");
+            opacity: 0.5%;
+        }
+
+        table, tbody, tr, th, td{
+            background-color: rgba(0, 0, 0, 0.0) !important;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<br>
+<h1 align="center">List All Reimbursement</h1>
+<br>
+<table class="table table-condensed table-borderedless table-hover" id="data">
+    <thead>
+    <tr>
+    <tr align="center">
+        <th>Ticket ID</th>
+        <th>Name</th>
+        <th>Item</th>
+        <th>Nominal<br>(AUD)</th>
+        <th>Date of Transaction</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--<tr th:each = "reimburse: ${listReimburse}">-->
+    <tr align="center" th:each = "reimburse: ${listReimburse}">
+        <td th:text="${reimburse.id}"></td>
+        <td th:text="${reimburse.name}"></td>
+        <td th:text="${reimburse.item}"></td>
+        <td th:text="${reimburse.nominal}"></td>
+        <td th:text="${reimburse.dateOfTransaction}"></td>
+        <td th:text="${reimburse.status}"></td>
+        <td>
+            <form th:action="@{/reimburse/detail}" method="GET">
+                <input type="hidden" th:name="id" th:value="${reimburse.id}" />
+                <button type="submit" class="btn btn-primary col-md-8 bg-danger">Detail Reimburse</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!--   <br>
+   <form th:action="@{/rawat-jalan/poli/tambah}" method="GET">
+       <button th:align="center" type="submit" class="btn btn-primary btn-lg btn-block">Tambah Poli</button>
+   </form>-->
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+	<style>
+		body {
+			background-image: url("http://minimal-wallpapers.com/wp-content/uploads/2015/09/giraffe-minimalist-wallpaper-orange.png");
+			opacity: 0.5%;
+		}
+	</style>
+
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar-anon"></nav>
+    <div class="container-fluid">
+		<br>
+        <div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+                <div class="card bg-transparent">
+                    <div class="card-header" align="center">
+                        Register
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${param.error}">
+                            <span style="color: red">Invalid username or password</span>
+                        </div>
+                        <form th:action="@{/user/addUser}" method="post">
+							<div class="row form-group">
+								<div class="col">
+									<label class="col-sd-4"> User Name:</label> <input
+										class="col-sd-8 form-control input-sm" type="text" maxlength="25"
+										name="username" required>
+									<small>Insert Your Full Name (You Can Use Space)</small>
+								</div>
+
+								<div class="col">
+									<label class="col-sd-4"> Password: </label> <input
+										class="col-sd-8 form-control input-sm" type="password"
+										name="password" pattern="^[A-Za-z0-9_]{1,15}$" required>
+									<small>Alphanumeric, max. 15 characters</small>
+								</div>
+							</div>
+
+							<div class="row form-group">
+
+								<label class="col-sd-4"> Role: </label> <select
+									class="form-control" name="role">
+									<option>ADMIN</option>
+									<option>STAFF</option>
+
+								</select>
+							</div>
+
+							<div class="row form-group">
+								<label>Contacts:</label>
+								<input type="text" name="contacts" id="phone" class="form-control"
+									   placeholder="Line or Whatsapp" maxlength="50" required/>
+								<small class="form-text text-muted">Preferably Whatsapp</small>
+							</div>
+
+							<div class="row form-group">
+								<div class="col">
+									<label>Preffered Bank:</label>
+									<input type="text" name="bank" class="col-sd-4 form-control input-sm" maxlength="50" required/>
+									<small class="form-text text-muted">Insert Your Prefered Bank</small>
+								</div>
+
+								<div class="col">
+									<label>Account Number</label>
+									<input type="number" name="acc" class="col-sd-8 form-control input-sm" maxlength="20" pattern="[0-9]*" placeholder="8888888888" required/>
+									<small class="form-text text-muted">Insert Your Account Number</small>
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<label>Division:</label>
+								<select class="custom-select" id="inputGroupSelect01" name="division">
+									<option name="division" value="Board of Directors" selected>Board of Directors</option>
+									<option name="division" value="Culture and Society">Culture and Society</option>
+									<option name="division" value="Education">Education</option>
+									<option name="division" value="Media">Media</option>
+									<option name="division" value="Public Relation">Public Relation</option>
+									<option name="division" value="Sports and Recreation">Sports and Recreation</option>
+								</select>
+							</div>
+
+							<br>
+
+							<div class="row form-group">
+								<div class="col-md-5"></div>
+								<div class="col-md-6">
+								<button type="submit" class="btn btn-primary bg-info">Submit</button>
+								</div>
+							</div>
+						</form>
+                    </div>
+                </div>
+				<br>
+			</div>
+            </div>
+        </div>
+    </div>
+
+	<script>
+        $(":input").inputmask();
+        $("#phone").inputmask({"mask": "(999) 999-9999"});
+	</script>
+</body>
+
+</html>

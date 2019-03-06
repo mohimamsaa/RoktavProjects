@@ -1,0 +1,9 @@
+body {
+    background-image: url("http://minimal-wallpapers.com/wp-content/uploads/2015/09/giraffe-minimalist-wallpaper-orange.png");
+    opacity: 0.5%;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
